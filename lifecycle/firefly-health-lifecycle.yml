@@ -1,0 +1,36 @@
+generated: '2026-08-01'
+method: probed
+source: 'observed on https://api-prod.firefly.health/api/v2/ and searched across
+  www.fireflyhealth.com'
+versioning:
+  scheme: uri-path
+  current: v2
+  docs: null
+  evidence: 'The member application bundle at members.firefly.health calls the base
+    path /api/v2/ on api-prod.firefly.health. No versioning policy is published.'
+deprecation:
+  policy_url: null
+  sunset_header: null
+  note: 'No deprecation or sunset policy is published; the API is private and
+    undocumented, so RFC 8594 support could not be observed.'
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+status_page_note: 'No status page found. status.firefly.health and
+  status.fireflyhealth.com do not resolve (NXDOMAIN), and no status link appears in
+  the site navigation or footer.'
+changelog: null
+deprecated_operations: []
+corporate_lifecycle:
+  event: acquisition-announced
+  date: '2026-07-28'
+  acquirer: Included Health
+  status: 'Definitive agreement signed; expected to close in Q3 2026.'
+  source: https://includedhealth.com/announcements/included-health-signs-agreement-to-acquire-firefly-health/
+  note: 'Firefly Health surfaces this on its own site. A close would likely move or
+    retire the members.firefly.health and api-prod.firefly.health surfaces - re-probe
+    this repo after Q3 2026.'
+x-evidence:
+  fetched: '2026-08-01'
+  hosts: [www.fireflyhealth.com, api-prod.firefly.health]

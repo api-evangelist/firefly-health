@@ -1,0 +1,81 @@
+generated: '2026-08-01'
+method: searched
+source: https://www.fireflyhealth.com/hipaa
+note: 'Firefly Health publishes a healthcare regulatory and accreditation posture but
+  no API-standards posture. There is no public specification, so every API/interop
+  standard below is recorded as not-evidenced rather than as a failure of a
+  documented contract.'
+standards:
+- id: hipaa
+  name: HIPAA (Health Insurance Portability and Accountability Act)
+  conforms: true
+  evidence: 'Firefly publishes a HIPAA Notice of Privacy Practices for the "Firefly
+    Medical Affiliated Covered Entity" (Firefly Medical Group, P.C. and affiliates),
+    last updated 2023-06-28.'
+  url: https://www.fireflyhealth.com/hipaa
+- id: ncqa-virtual-care-accreditation
+  name: NCQA Virtual Care Accreditation
+  conforms: true
+  evidence: 'Firefly Health announced in June 2025 that it is the first national
+    primary care practice to earn NCQA Virtual Care Accreditation, and one of five
+    organizations nationwide to do so; it was a collaborator in the two-year pilot
+    that developed the program.'
+  url: https://www.fireflyhealth.com/blog/newsroom/firefly-health-drives-virtual-care-quality-as-first-national-primary-care-practice-to-achieve-ncqa-accreditation/
+- id: cms-transparency-in-coverage
+  name: CMS Transparency in Coverage Rule (45 CFR 147.210-211)
+  conforms: true
+  evidence: 'Firefly publishes a Price Transparency page stating it makes negotiated
+    service rates and out-of-network allowed amounts available through a pricing
+    transparency portal powered by Opyn Health.'
+  url: https://www.fireflyhealth.com/pricing-transparency
+  note: 'Rates are exposed through a third-party search portal
+    (iris.opynhealth.com); no machine-readable-file index URL is linked from the
+    Firefly site.'
+- id: cms-patient-access-api
+  name: CMS Interoperability and Patient Access API (FHIR R4 / US Core)
+  conforms: false
+  evidence: 'No patient-access FHIR endpoint, CapabilityStatement, or developer
+    registration surface was found. /metadata and /fhir/metadata return 404 on
+    www.fireflyhealth.com and api-prod.firefly.health.'
+- id: fhir-r4
+  name: HL7 FHIR R4
+  conforms: false
+  evidence: No FHIR endpoint or conformance resource published.
+- id: smart-on-fhir
+  name: SMART App Launch
+  conforms: false
+  evidence: 'No /.well-known/smart-configuration and no OAuth authorization-server
+    metadata on any host.'
+- id: oauth2
+  name: OAuth 2.0
+  conforms: false
+  evidence: 'No public OAuth surface. /.well-known/oauth-authorization-server and
+    /.well-known/oauth-protected-resource return 404. The private member API varies
+    on Cookie, indicating session-based authentication.'
+- id: oidc
+  name: OpenID Connect
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on every host.
+- id: openapi
+  name: OpenAPI Specification
+  conforms: false
+  evidence: 'No OpenAPI/Swagger document at any probed location on
+    www.fireflyhealth.com, members.firefly.health or api-prod.firefly.health.'
+- id: rfc9457-problem-details
+  name: RFC 9457 Problem Details for HTTP APIs
+  conforms: false
+  evidence: 'Not evidenced; error bodies from api-prod.firefly.health are text/html,
+    not application/problem+json.'
+- id: rfc9116-security-txt
+  name: RFC 9116 security.txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on every Firefly Health host.
+- id: rfc6797-hsts
+  name: RFC 6797 HTTP Strict Transport Security
+  conforms: true
+  evidence: 'api-prod.firefly.health returns Strict-Transport-Security max-age=63072000;
+    includeSubDomains; preload. The marketing and member hosts do not set HSTS.'
+  url: https://api-prod.firefly.health/
+x-evidence:
+  fetched: '2026-08-01'
+  hosts: [www.fireflyhealth.com, members.firefly.health, api-prod.firefly.health]

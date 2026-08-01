@@ -1,0 +1,48 @@
+generated: '2026-08-01'
+method: probed
+source: live GET probes of /.well-known/* on every Firefly Health host
+result: none
+summary: 'No /.well-known/ discovery document is published on any Firefly Health host.
+  www.fireflyhealth.com and api-prod.firefly.health return a hard 404 for every path
+  probed. members.firefly.health is a single-page application whose catch-all route
+  answers HTTP 200 with the same 6,874-byte HTML shell for EVERY path - these are
+  rejected as false positives, not recorded as hits. No security.txt, no OIDC or OAuth
+  authorization-server metadata, no api-catalog, no ai-plugin, and no A2A agent card
+  exist. No WellKnown or SecurityTxt pointer is wired into apis.yml, because nothing
+  was found to point at.'
+documents: []
+probes:
+- host: https://www.fireflyhealth.com
+  results:
+  - {path: /.well-known/security.txt, status: 404, content_type: text/html}
+  - {path: /.well-known/openid-configuration, status: 404, content_type: text/html}
+  - {path: /.well-known/oauth-authorization-server, status: 404, content_type: text/html}
+  - {path: /.well-known/oauth-protected-resource, status: 404, content_type: text/html}
+  - {path: /.well-known/api-catalog, status: 404, content_type: text/html}
+  - {path: /.well-known/ai-plugin.json, status: 404, content_type: text/html}
+  - {path: /.well-known/agent-card.json, status: 404, content_type: text/html}
+  - {path: /.well-known/agent.json, status: 404, content_type: text/html}
+- host: https://api-prod.firefly.health
+  results:
+  - {path: /.well-known/security.txt, status: 404, content_type: 'text/html; charset=utf-8'}
+  - {path: /.well-known/openid-configuration, status: 404, content_type: 'text/html; charset=utf-8'}
+  - {path: /.well-known/oauth-authorization-server, status: 404, content_type: 'text/html; charset=utf-8'}
+  - {path: /.well-known/agent-card.json, status: 404, content_type: 'text/html; charset=utf-8'}
+  - {path: /.well-known/agent.json, status: 404, content_type: 'text/html; charset=utf-8'}
+- host: https://members.firefly.health
+  spa_catch_all: true
+  note: 'Returns HTTP 200 with an identical text/html SPA shell (6,874 bytes) for every
+    path, including nonsense paths. All 200s on this host are rejected as false
+    positives per the pipeline contract.'
+  results:
+  - {path: /.well-known/security.txt, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/openid-configuration, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/oauth-authorization-server, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/oauth-protected-resource, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/api-catalog, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/ai-plugin.json, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/agent-card.json, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/agent.json, status: 200, content_type: text/html, accepted: false}
+x-evidence:
+  fetched: '2026-08-01'
+  hosts: [www.fireflyhealth.com, members.firefly.health, api-prod.firefly.health]
