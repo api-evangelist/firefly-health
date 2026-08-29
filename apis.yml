@@ -12,6 +12,17 @@ description: 'Firefly Health is a virtual-first primary care practice and clinic
   and mobile apps are served by a private first-party API at api-prod.firefly.health
   under an /api/v2/ base path. Included Health signed an agreement to acquire Firefly
   Health in July 2026.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://cdn.sanity.io/images/xgbrv2vi/production/4095bfda2782d4ea0e578f21c79132dfa867ffac-1200x630.png?w=1200&h=630
 url: https://raw.githubusercontent.com/api-evangelist/firefly-health/refs/heads/main/apis.yml
 x-type: company
