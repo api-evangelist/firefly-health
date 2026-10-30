@@ -64,33 +64,90 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Firefly Health is a virtual-first primary care practice and clinically integrated health plan founded in 2016 and headquartered in Watertown, Massachusetts. Members get a dedicated care team — a primary care physician, nurse practitioner, health guide and behavioral health specialist — reachable by chat and video through the Firefly Health app, backed by the Firefly Nearby network for in-person, at-home and specialty care. Firefly sells an employer-sponsored alternative health plan alongside its virtual primary care service, and in 2025 became the first national primary care practice to earn NCQA Virtual Care Accreditation.
+Firefly Health is a virtual-first primary care practice and clinically integrated health plan founded in 2016 and headquartered in Watertown, Massachusetts. Members get a dedicated care team - a primary care physician, nurse practitioner, health guide and behavioral health specialist - reachable by chat and video through the Firefly Health app, backed by the Firefly Nearby network for in-person, at-home and specialty care. Firefly sells an employer-sponsored alternative health plan alongside its virtual primary care service, and in 2025 became the first national primary care practice to earn NCQA Virtual Care Accreditation. Firefly publishes no public developer program, portal, documentation or specification: the member web and mobile apps are served by a private first-party API at api-prod.firefly.health under an /api/v2/ base path. Included Health signed an agreement to acquire Firefly Health in July 2026.
 
-- Website: https://www.fireflyhealth.com/
-- Member portal: https://members.firefly.health/
-- GitHub: https://github.com/fireflyhealth
-- Secondary market listing: https://forgeglobal.com/firefly-health_stock/
+**Areas:** Company · Healthcare · Health Plans · Virtual Care · Primary Care · Telehealth · Health Insurance · Employee Benefits · Digital Health
 
-## API surface
+## Firefly Health on APIs.io
 
-**Firefly Health publishes no public API.** There is no developer portal, no documentation, no API reference, no SDK, no CLI, no Postman collection and no machine-readable specification of any kind.
+Everything profiled for Firefly Health is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/firefly-health/](https://apis.io/providers/firefly-health/)** — or go straight to one of the APIs or properties below.
 
-The member web and mobile apps are served by a **private** first-party API observed at `https://api-prod.firefly.health/api/v2/` (referenced from the `members.firefly.health` application bundle). It answers from a gunicorn origin with HSTS preload, a CSP, `X-Frame-Options: DENY` and `X-Content-Type-Options: nosniff`, and varies on `Cookie` — session-based authentication. Every discovery path probed on 2026-08-01 returned 404: `/openapi.json`, `/openapi.yaml`, `/swagger.json`, `/v1/openapi.json`, `/api-docs`, `/docs`, `/redoc`, `/graphql`, `/metadata`, `/fhir/metadata`, and every `/.well-known/*` path.
+### APIs (1)
 
-`members.firefly.health` is a single-page app whose catch-all route answers **HTTP 200 with the same HTML shell for every path**, including `/.well-known/agent-card.json`. Those 200s are false positives and are recorded as rejected — no agent card, no OpenAPI, no OIDC metadata exists there.
+- [Firefly Health Member API](https://apis.io/apis/firefly-health/member-api/) — Private first-party HTTP API that backs the Firefly Health member web app and iOS/Android apps. Observed at https://api-prod.firefly.health with an /api/v2/…
 
-## Artifacts
+### Published properties
 
-| Artifact | Method | Result |
-|---|---|---|
-| `conformance/firefly-health-conformance.yml` | searched | HIPAA Notice of Privacy Practices, NCQA Virtual Care Accreditation, CMS Transparency in Coverage; no FHIR / SMART / OAuth / OpenAPI posture |
-| `lifecycle/firefly-health-lifecycle.yml` | probed | `/api/v2/` URI-path versioning; **no** status page, SLA, changelog or deprecation policy; acquisition by Included Health announced 2026-07-28 |
-| `security/firefly-health-domain-security.yml` | probed | TLS 1.3 on the web hosts, TLS 1.2 on the API host; HSTS preload on `api-prod.firefly.health` only; DNSSEC on both domains; CAA on `firefly.health` only; SPF + DMARC on both (`p=none` on `fireflyhealth.com`) |
-| `well-known/firefly-health-well-known.yml` | probed | **none** — no security.txt, OIDC, OAuth, api-catalog, ai-plugin or agent card on any host |
-| `llms/firefly-health-llms.txt` | generated | Catalog-derived llms.txt (Firefly publishes no `/llms.txt`) |
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Not written, because nothing real was found to write: `openapi/`, `graphql/`, `asyncapi/`, `mcp/`, `a2a/`, `skills/`, `packages/`, `cli/`, `sandbox/`, `changelog/`, `components/`, `errors/`, `data-model/`, `conventions/`, `overlays/`, `scopes/`, `authentication/`, `grpc/`. No agent card was authored — that artifact is search-only.
+#### Security (1)
 
-## Corporate
+Authentication, trust centre, and vulnerability disclosure.
 
-Included Health signed a definitive agreement to acquire Firefly Health on 2026-07-28, expected to close in Q3 2026. Re-probe these hosts after the close; the `members.firefly.health` and `api-prod.firefly.health` surfaces may move or retire.
+- [Firefly Health Domain Security](https://apis.io/security/firefly-health/firefly-health-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.fireflyhealth.com/)
+- [Sign up](https://members.firefly.health/signup/user-type)
+- [Support](https://www.fireflyhealth.com/contact)
+- [Blog](https://www.fireflyhealth.com/blog/newsroom)
+- [Compliance](https://www.fireflyhealth.com/hipaa)
+- [Terms of service](https://www.fireflyhealth.com/terms-of-use)
+- [Privacy policy](https://www.fireflyhealth.com/privacy-policy)
+- [GitHub](https://github.com/fireflyhealth)
+
+## API Evangelist rating
+
+**Kin Score 20.1** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 7.1 |
+| Access clarity | 35.5 |
+
+**Agent readiness 0.0** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 23.4** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/firefly-health/](https://apis.io/providers/firefly-health/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Firefly Health: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/firefly-health/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
